@@ -1,4 +1,5 @@
-import { superHeroMovie } from "../js/api";
+import { superHeroMovies } from "../js/api";
+import style from "../js/style";
 
 class superHeroFilms extends HTMLElement{
     constructor(){
@@ -8,8 +9,8 @@ class superHeroFilms extends HTMLElement{
 
         const template = document.createElement('template');
         template.innerHTML = `
+        ${style}
         <div class="movieContiner">
-            <h2>Super Hero Movies</h2>
             <div class="movieItem">
         
             </div>
@@ -19,7 +20,7 @@ class superHeroFilms extends HTMLElement{
 
     };
     async connectedCallback(){
-        const movie  = await superHeroMovie();
+        const movie  = await superHeroMovies();
         const movieItem = this.shadowRoot.querySelector('.movieItem');
 
         movie.slice(0, 10).forEach((movie) =>{
@@ -28,8 +29,17 @@ class superHeroFilms extends HTMLElement{
             movieList.innerHTML = `
             <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title}">
             <h3>${movie.title}</h3>
+            <p>${movie.release_date}</p>
+            <button class="btn-detail" data-movie-id="${movie.id}">Detail</button>
             `;
             movieItem.appendChild(movieList);
+        });
+        const detailButtons = this.shadowRoot.querySelectorAll('.btn-detail');
+        detailButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const movieId = button.getAttribute('data-movie-id');
+                window.location.href = `page/film.html?id=${movieId}`;
+            });
         });
     };
 };

@@ -1,30 +1,31 @@
 import './components/new-films.js';
 import './components/populer-films.js';
 import './components/superhero-films.js';
-import './components/search.js'
+import './components/local-film.js';
+import './components/netflix-list.js';
+import './components/film-detail.js';
+import './components/tvSeries-detail.js';
 
-const newFilm = document.createElement('new-film');
+
+const newFilm = document.createElement('new-films');
 const populerFilm = document.createElement('populer-film');
 const superHero = document.createElement('superhero-film');
-
-
-const searchFilm = document.createElement('search-film');
-const searchForm = document.getElementById('searchForm');
-searchForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
-
-  const query = searchForm.querySelector('input').value;
-  if (!query) {
-    return;
-  }
-
-  await searchResult.search(query);
-  document.getElementById('searchResult').appendChild(searchFilm);
-});
+const localFims = document.createElement('local-film');
+const filmDetails = document.createElement('movieDetail');
+const tvDetails = document.createElement('tvDetails');
+const animeList = document.createElement('anime-list');
 
 
 
-
-document.getElementById("newFilm").appendChild(newFilm);
-document.getElementById("populer").appendChild(populerFilm);
+document.getElementById('newFilm').appendChild(newFilm);
+document.getElementById('populer').appendChild(populerFilm);
 document.getElementById('superHero').appendChild(superHero);
+document.getElementById('localFilm').appendChild(localFims);
+document.getElementById('netflix').appendChild(animeList);
+
+
+
+document.getElementById('movieDetail').appendChild(filmDetails);
+document.getElementById('movieDetail').appendChild(tvDetails);
+
+
